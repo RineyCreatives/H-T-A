@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro HTML to APK Converter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 28px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 500;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--primary);
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            background-color: rgba(67, 97, 238, 0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .upload-area.dragover {
+            background-color: rgba(67, 97, 238, 0.15);
+            border-color: var(--secondary);
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .upload-text {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .upload-subtext {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--gray-light);
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+        }
+        
+        .btn-success:hover {
+            background-color: #3d8b40;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+        }
+        
+        .btn-danger:hover {
+            background-color: #d32f2f;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--gray-light);
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--gray);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .preview-container {
+            border: 1px solid var(--gray-light);
+            border-radius: 5px;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .preview-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .preview-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .preview-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .build-history {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .history-item:last-child {
+            border-bottom: none;
+        }
+        
+        .history-name {
+            font-weight: 500;
+        }
+        
+        .history-date {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .history-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .icon-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--dark);
+            transition: background-color 0.3s;
+        }
+        
+        .icon-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .progress-container {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: var(--gray-light);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .progress-text {
+            margin-top: 10px;
+            text-align: center;
+            color: var(--gray);
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transform: translateX(150%);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification-icon {
+            font-size: 24px;
+        }
+        
+        .notification.success .notification-icon {
+            color: var(--success);
+        }
+        
+        .notification.error .notification-icon {
+            color: var(--danger);
+        }
+        
+        .notification.warning .notification-icon {
+            color: var(--warning);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .plugin-card {
+            border: 1px solid var(--gray-light);
+            border-radius: 5px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .plugin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .plugin-name {
+            font-weight: 500;
+        }
+        
+        .plugin-description {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--gray-light);
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-mobile-alt"></i>
+                <h1>Pro HTML to APK Converter</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active">Converter</a></li>
+                    <li><a href="#" class="nav-link">Projects</a></li>
+                    <li><a href="#" class="nav-link">Plugins</a></li>
+                    <li><a href="#" class="nav-link">Settings</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Upload HTML Project</h2>
+                <button class="btn" id="newProjectBtn">New Project</button>
+            </div>
+            
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="upload-text">Drag & drop your HTML project here</div>
+                <div class="upload-subtext">or click to browse files (HTML, CSS, JS, images)</div>
+                <input type="file" id="fileInput" style="display: none;" multiple webkitdirectory directory>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">App Configuration</h2>
+            </div>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="basic">Basic</div>
+                <div class="tab" data-tab="advanced">Advanced</div>
+                <div class="tab" data-tab="permissions">Permissions</div>
+                <div class="tab" data-tab="plugins">Plugins</div>
+            </div>
+            
+            <div class="tab-content active" id="basic">
+                <div class="grid">
+                    <div class="form-group">
+                        <label for="appName">App Name</label>
+                        <input type="text" id="appName" placeholder="My Awesome App">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="packageName">Package Name</label>
+                        <input type="text" id="packageName" placeholder="com.example.myapp">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="version">Version</label>
+                        <input type="text" id="version" placeholder="1.0.0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="orientation">Orientation</label>
+                        <select id="orientation">
+                            <option value="portrait">Portrait</option>
+                            <option value="landscape">Landscape</option>
+                            <option value="default">Default</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appIcon">App Icon</label>
+                        <input type="file" id="appIcon" accept="image/*">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="splashScreen">Splash Screen</label>
+                        <input type="file" id="splashScreen" accept="image/*">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="advanced">
+                <div class="grid">
+                    <div class="form-group">
+                        <label for="minSdk">Minimum SDK</label>
+                        <select id="minSdk">
+                            <option value="21">Android 5.0 (Lollipop)</option>
+                            <option value="22">Android 5.1 (Lollipop)</option>
+                            <option value="23">Android 6.0 (Marshmallow)</option>
+                            <option value="24">Android 7.0 (Nougat)</option>
+                            <option value="26">Android 8.0 (Oreo)</option>
+                            <option value="28">Android 9.0 (Pie)</option>
+                            <option value="29">Android 10.0</option>
+                            <option value="30">Android 11.0</option>
+                            <option value="31">Android 12.0</option>
+                            <option value="32">Android 12L</option>
+                            <option value="33">Android 13.0</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="targetSdk">Target SDK</label>
+                        <select id="targetSdk">
+                            <option value="33">Android 13.0</option>
+                            <option value="32">Android 12L</option>
+                            <option value="31">Android 12.0</option>
+                            <option value="30">Android 11.0</option>
+                            <option value="29">Android 10.0</option>
+                            <option value="28">Android 9.0 (Pie)</option>
+                            <option value="26">Android 8.0 (Oreo)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="theme">Theme</label>
+                        <select id="theme">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                            <option value="default">Default</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fullscreen">Fullscreen Mode</label>
+                        <select id="fullscreen">
+                            <option value="false">Disabled</option>
+                            <option value="true">Enabled</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customConfig">Custom Config (JSON)</label>
+                    <textarea id="customConfig" rows="5" placeholder='{"key": "value"}'></textarea>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="permissions">
+                <div class="grid">
+                    <div class="form-group">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="cameraPermission">
+                            <span class="slider"></span>
+                        </label>
+                        <label for="cameraPermission">Camera</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="locationPermission">
+                            <span class="slider"></span>
+                        </label>
+                        <label for="locationPermission">Location</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="storagePermission">
+                            <span class="slider"></span>
+                        </label>
+                        <label for="storagePermission">Storage</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="microphonePermission">
+                            <span class="slider"></span>
+                        </label>
+                        <label for="microphonePermission">Microphone</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="contactsPermission">
+                            <span class="slider"></span>
+                        </label>
+                        <label for="contactsPermission">Contacts</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="phonePermission">
+                            <span class="slider"></span>
+                        </label>
+                        <label for="phonePermission">Phone</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="plugins">
+                <div class="grid">
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <div class="plugin-name">Camera</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" class="plugin-toggle" data-plugin="camera">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="plugin-description">
+                            Access device camera to take pictures and videos.
+                        </div>
+                        <button class="btn btn-block">Configure</button>
+                    </div>
+                    
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <div class="plugin-name">Geolocation</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" class="plugin-toggle" data-plugin="geolocation">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="plugin-description">
+                            Get device geographical location.
+                        </div>
+                        <button class="btn btn-block">Configure</button>
+                    </div>
+                    
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <div class="plugin-name">Notifications</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" class="plugin-toggle" data-plugin="notifications">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="plugin-description">
+                            Schedule local notifications and manage them.
+                        </div>
+                        <button class="btn btn-block">Configure</button>
+                    </div>
+                    
+                    <div class="plugin-card">
+                        <div class="plugin-header">
+                            <div class="plugin-name">File Transfer</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" class="plugin-toggle" data-plugin="file">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="plugin-description">
+                            Upload and download files from the device.
+                        </div>
+                        <button class="btn btn-block">Configure</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Preview</h2>
+                <div class="preview-controls">
+                    <div class="preview-btn" id="refreshPreview">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="preview-btn" id="deviceToggle">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="preview-container">
+                <iframe class="preview-frame" id="previewFrame" src="about:blank"></iframe>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Build APK</h2>
+            </div>
+            
+            <div class="form-group">
+                <label for="buildType">Build Type</label>
+                <select id="buildType">
+                    <option value="debug">Debug</option>
+                    <option value="release">Release</option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="signingGroup" style="display: none;">
+                <label for="keystore">Keystore File</label>
+                <input type="file" id="keystore">
+                
+                <label for="keystorePassword" style="margin-top: 15px;">Keystore Password</label>
+                <input type="password" id="keystorePassword">
+                
+                <label for="keyAlias" style="margin-top: 15px;">Key Alias</label>
+                <input type="text" id="keyAlias">
+                
+                <label for="keyPassword" style="margin-top: 15px;">Key Password</label>
+                <input type="password" id="keyPassword">
+            </div>
+            
+            <button class="btn btn-success btn-block" id="buildBtn">Build APK</button>
+            
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">Preparing build environment...</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Build History</h2>
+            </div>
+            
+            <div class="build-history" id="buildHistory">
+                <div class="history-item">
+                    <div>
+                        <div class="history-name">My Awesome App v1.0.0</div>
+                        <div class="history-date">2023-05-15 14:30</div>
+                    </div>
+                    <div class="history-actions">
+                        <div class="icon-btn" title="Download">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="icon-btn" title="Share">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <div class="icon-btn" title="Delete">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="history-item">
+                    <div>
+                        <div class="history-name">My Awesome App v0.9.0</div>
+                        <div class="history-date">2023-05-10 10:15</div>
+                    </div>
+                    <div class="history-actions">
+                        <div class="icon-btn" title="Download">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="icon-btn" title="Share">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <div class="icon-btn" title="Delete">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="notification-message">
+            Operation completed successfully!
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const buildBtn = document.getElementById('buildBtn');
+            const buildType = document.getElementById('buildType');
+            const signingGroup = document.getElementById('signingGroup');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.querySelector('.notification-message');
+            const notificationIcon = document.querySelector('.notification-icon i');
+            const previewFrame = document.getElementById('previewFrame');
+            const refreshPreview = document.getElementById('refreshPreview');
+            const deviceToggle = document.getElementById('deviceToggle');
+            const buildHistory = document.getElementById('buildHistory');
+            
+            // Upload area functionality
+            uploadArea.addEventListener('click', () => fileInput.click());
+            
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                
+                if (e.dataTransfer.items) {
+                    for (let i = 0; i < e.dataTransfer.items.length; i++) {
+                        if (e.dataTransfer.items[i].kind === 'file') {
+                            const file = e.dataTransfer.items[i].getAsFile();
+                            console.log('File:', file);
+                        }
+                    }
+                } else {
+                    for (let i = 0; i < e.dataTransfer.files.length; i++) {
+                        console.log('File:', e.dataTransfer.files[i]);
+                    }
+                }
+                
+                showNotification('Files uploaded successfully!', 'success');
+                updatePreview();
+            });
+            
+            fileInput.addEventListener('change', (e) => {
+                console.log('Files selected:', e.target.files);
+                showNotification('Files uploaded successfully!', 'success');
+                updatePreview();
+            });
+            
+            // Tab functionality
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    tab.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Build type change
+            buildType.addEventListener('change', () => {
+                if (buildType.value === 'release') {
+                    signingGroup.style.display = 'block';
+                } else {
+                    signingGroup.style.display = 'none';
+                }
+            });
+            
+            // Build button
+            buildBtn.addEventListener('click', () => {
+                progressContainer.style.display = 'block';
+                buildBtn.disabled = true;
+                
+                // Simulate build process
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 5;
+                    progressFill.style.width = `${progress}%`;
+                    
+                    if (progress < 25) {
+                        progressText.textContent = 'Preparing build environment...';
+                    } else if (progress < 50) {
+                        progressText.textContent = 'Processing assets...';
+                    } else if (progress < 75) {
+                        progressText.textContent = 'Compiling resources...';
+                    } else if (progress < 95) {
+                        progressText.textContent = 'Generating APK...';
+                    } else {
+                        progressText.textContent = 'Finalizing build...';
+                    }
+                    
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        buildBtn.disabled = false;
+                        
+                        // Add to build history
+                        const appName = document.getElementById('appName').value || 'My App';
+                        const version = document.getElementById('version').value || '1.0.0';
+                        const now = new Date();
+                        const dateStr = `${now.getFullYear()}-${(now.getMonth()+1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+                        
+                        const historyItem = document.createElement('div');
+                        historyItem.className = 'history-item';
+                        historyItem.innerHTML = `
+                            <div>
+                                <div class="history-name">${appName} v${version}</div>
+                                <div class="history-date">${dateStr}</div>
+                            </div>
+                            <div class="history-actions">
+                                <div class="icon-btn" title="Download">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <div class="icon-btn" title="Share">
+                                    <i class="fas fa-share-alt"></i>
+                                </div>
+                                <div class="icon-btn" title="Delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                            </div>
+                        `;
+                        
+                        buildHistory.insertBefore(historyItem, buildHistory.firstChild);
+                        
+                        showNotification('APK built successfully!', 'success');
+                        
+                        setTimeout(() => {
+                            progressContainer.style.display = 'none';
+                            progressFill.style.width = '0%';
+                        }, 2000);
+                    }
+                }, 200);
+            });
+            
+            // Notification function
+            function showNotification(message, type = 'success') {
+                notificationMessage.textContent = message;
+                notification.className = 'notification show';
+                
+                if (type === 'success') {
+                    notificationIcon.className = 'fas fa-check-circle';
+                    notification.classList.add('success');
+                } else if (type === 'error') {
+                    notificationIcon.className = 'fas fa-exclamation-circle';
+                    notification.classList.add('error');
+                } else if (type === 'warning') {
+                    notificationIcon.className = 'fas fa-exclamation-triangle';
+                    notification.classList.add('warning');
+                }
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+            
+            // Preview functionality
+            function updatePreview() {
+                // In a real app, this would load the uploaded HTML files
+                previewFrame.src = 'about:blank';
+                setTimeout(() => {
+                    previewFrame.srcdoc = `
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                            <title>Preview</title>
+                            <style>
+                                body { font-family: Arial, sans-serif; padding: 20px; }
+                                h1 { color: #4361ee; }
+                                .container { max-width: 800px; margin: 0 auto; }
+                                .card { background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+                                button { background: #4361ee; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; }
+                            </style>
+                        </head>
+                        <body>
+                            <div class="container">
+                                <h1>My Awesome App</h1>
+                                <div class="card">
+                                    <p>This is a preview of your HTML application. In a real implementation, this would show your actual uploaded HTML files.</p>
+                                    <button>Click Me!</button>
+                                </div>
+                            </div>
+                            <script>
+                                document.querySelector('button').addEventListener('click', () => {
+                                    alert('Button clicked!');
+                                });
+                            </script>
+                        </body>
+                        </html>
+                    `;
+                }, 100);
+            }
+            
+            refreshPreview.addEventListener('click', updatePreview);
+            
+            // Device toggle (for preview)
+            let isMobile = true;
+            deviceToggle.addEventListener('click', () => {
+                isMobile = !isMobile;
+                if (isMobile) {
+                    deviceToggle.innerHTML = '<i class="fas fa-mobile-alt"></i>';
+                    previewContainer.style.height = '500px';
+                } else {
+                    deviceToggle.innerHTML = '<i class="fas fa-desktop"></i>';
+                    previewContainer.style.height = '600px';
+                }
+                updatePreview();
+            });
+            
+            // Initialize preview
+            updatePreview();
+            
+            // Plugin toggles
+            const pluginToggles = document.querySelectorAll('.plugin-toggle');
+            pluginToggles.forEach(toggle => {
+                toggle.addEventListener('change', () => {
+                    const pluginName = toggle.getAttribute('data-plugin');
+                    if (toggle.checked) {
+                        showNotification(`${pluginName} plugin enabled`, 'success');
+                    } else {
+                        showNotification(`${pluginName} plugin disabled`, 'warning');
+                    }
+                });
+            });
+            
+            // New project button
+            document.getElementById('newProjectBtn').addEventListener('click', () => {
+                if (confirm('Starting a new project will clear all current settings. Continue?')) {
+                    // Reset all form fields
+                    document.getElementById('appName').value = '';
+                    document.getElementById('packageName').value = '';
+                    document.getElementById('version').value = '';
+                    document.getElementById('orientation').value = 'portrait';
+                    document.getElementById('appIcon').value = '';
+                    document.getElementById('splashScreen').value = '';
+                    document.getElementById('minSdk').value = '21';
+                    document.getElementById('targetSdk').value = '33';
+                    document.getElementById('theme').value = 'light';
+                    document.getElementById('fullscreen').value = 'false';
+                    document.getElementById('customConfig').value = '';
+                    
+                    // Reset permissions
+                    document.querySelectorAll('#permissions input[type="checkbox"]').forEach(cb => cb.checked = false);
+                    
+                    // Reset plugins
+                    document.querySelectorAll('.plugin-toggle').forEach(toggle => toggle.checked = false);
+                    
+                    // Reset build type
+                    buildType.value = 'debug';
+                    signingGroup.style.display = 'none';
+                    
+                    // Reset file inputs
+                    fileInput.value = '';
+                    
+                    showNotification('New project created', 'success');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
